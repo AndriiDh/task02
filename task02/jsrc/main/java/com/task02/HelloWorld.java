@@ -24,14 +24,16 @@ public class HelloWorld implements RequestHandler<Object, Map<String, Object>> {
 		System.out.println("Hello from lambda");
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("statusCode", 200);
-		resultMap.put("body", new Response("Hello from Lambda"));
+		resultMap.put("body", new Response(200, "Hello from Lambda"));
 		return resultMap;
 	}
 }
 
 class Response implements Serializable {
+	public int statusCode;
 	public String message;
-	public Response(String message) {
+	public Response(int statusCode, String message) {
+		this.statusCode = statusCode;
 		this.message = message;
 	}
 }
